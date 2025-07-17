@@ -3,7 +3,7 @@ import { Card } from 'react-native-paper';
 import { useState } from 'react';
 
 const defaultTodos = [
-  { label: "Study react 😎", state: false },
+  { label: "Study React 😎", state: false },
   { label: "Build portfolio 💼", state: false }
 ];
 
@@ -16,9 +16,15 @@ export default function TodoList() {
     setTodo("");
   }
 
-  function markAsDone(index: number) {
+  function markAsDone(index) {
+    // make copy of list
     const updatedList = [...todoList];
-    updatedList[index] = { ...updatedList[index], state: true };
+    // get item to update
+    const newToDo = updatedList[index];
+    // set state to true
+    newToDo.state = true;
+    // update list with completed item
+    updatedList[index] = newToDo;
     setTodoList(updatedList);
   }
 
@@ -35,12 +41,14 @@ export default function TodoList() {
       />
 
       <View style={styles.buttons}>
+         {/* addTodo function is called when button is clicked */}
         <Button title="Add Todo" onPress={addTodo} />
       </View>
 
       <Card style={styles.card}>
         {todoList.map((todo, index) => 
           <View key={index} style={styles.todoItem}>
+            {/* markAsDone function is called to mark an item as completed */}
             <Button title={todo.state ? "✅" : "⭕"} onPress={() => markAsDone(index)} />
             <Text style={styles.todoLabel}>{todo.label}</Text>
           </View>
