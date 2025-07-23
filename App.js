@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     margin: 16,
+    backgroundColor: 'yellow'
   },
   paragraph: {
     margin: 16,
